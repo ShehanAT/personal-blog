@@ -1,10 +1,10 @@
 ---
 title: Logo Design for personal portfolio
 date: "2019-08-16T22:12:03.284Z"
-description: "Short tutorial on how to create my brand logo"
+description: "Short tutorial on how to create my brand logo "
 ---
 
-Hey everybody!
+Hey everybody!:wave:
 
 This is going to be a short tutorial on how to create a logo like this:
 ![image of logo](./img1.png)
@@ -12,7 +12,7 @@ This is going to be a short tutorial on how to create a logo like this:
 First you will need:
 * A vector graphics editing software(eg. PhotoShop, Affinity Designer...)
 * Computer 
-* Your Mind :simple_smile:
+* Your Mind :smile:
 
 To make this logo I used Affinity Designer, but you can follow along using any vector editting software of your choice(i.e: Photoshop) So let's get to the details:
 
@@ -25,6 +25,7 @@ To make this logo I used Affinity Designer, but you can follow along using any v
 * Centre the heading inside the inner rectangle.
 * Mark out an evenly spaced rectangle section in the top part of the bigger rectangle then use the paint brush tool, pick the same color as the document background and paint over the marked out section.
 * Finally select the text tool, pick a traditional font( or something different if you’re feeling fancy), type out your tag line and centre it inside the section we painted over in the previous step.
-There you go the hard parts are done and I will leave you off here. Feel free to customize the size proportions, font types and colors till your heart’s desire. 
+
+ There you go the hard parts are done and I will leave you off here :thumbsup:. Feel free to customize the size proportions, font types and colors till your heart’s desire. 
 
 @ me your designs at @ShehanAtuk on Twitter, and check out my YouTube channel, Github and Codepen.
