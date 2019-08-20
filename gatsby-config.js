@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Guides to Life by Shehan Atuk`,
+    title: `Web Dev Tutorials`,
     author: `Shehan Atuk `,
     description: `Helping people learn, brick by brick!`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
