@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Guides to Life by Shehan Atuk`,
+    title: `Web Dev Tutorials`,
     author: `Shehan Atuk `,
     description: `Helping people learn, brick by brick!`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://shehanatuk.com`,
     social: {
       twitter: `Shehan_Atuk`,
     },
@@ -79,13 +79,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Shehan Atuk's Blog`,
+        short_name: `Blog`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/logo.png`,
       },
     },
     `gatsby-plugin-offline`,
