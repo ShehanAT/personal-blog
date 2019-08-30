@@ -3,4 +3,5 @@
 * 08/19/2019: added post for 08-19-2019
 * 08/20/2019: changed title to 'Web Dev Tutorials'
 * 08/23/2019: added post for 08/23/2019, changed default favicon to custom one
+* 08/26/2019: added post for 08-2602019
 
