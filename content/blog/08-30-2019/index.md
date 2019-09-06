@@ -10,7 +10,7 @@ I just finished 97 Things Every Programmer Should Know. Here is my personal revi
 What is 97 Things Every Programmer Should Know about?
 This book is a collection of short articles written by over 70 different authors, 73 to be exact, pertaining to industry best practices in the field of computer programming. Written in 2010 and published by O'Reilly publishing the book contains articles from many prolific figures in the field of software development  such as Uncle Bob aka Robert C. Martin, Kevlin Henney and Randy Stafford. 
 
-Personal Review of Smashing Book 6:
+Personal Review of 97 Things Every Programmer Should Know:
 The defining feature of this book is the short, concise and imformative articles it provides and it is one I truly enjoy. Since each author has only has two pages to convey their message they put effort into getting straight to the main idea without beating around the bush like so many other books on software development/design. I also like the emphasis placed on testing software before making production builds. 
 
 An area of strong emphasis in this book the importance of testing, whether that be unit testing, integration testing, system testing, sanity testing or interface testing. I can safely estimate that over half the articles in the book are on some form of testing, which really shocked me because prior to reading this book I was unaware of the importance of  testing.
@@ -21,4 +21,4 @@ Other topics this book covers include how to use version control to better manag
 
 Overall this is a must read book for new software developers because it teaches you that to be a great software developer is more than just coding away in your basement, but rather the implementation and development of best practices listed in this book and the ability to effectively communicate your intentions and ideas with those around you. 
 
-Well that's all for today, I hope you found this guide helpfull. I would greatly appreciate if you could check out my [Youtube channel](https://www.youtube.com/channel/UCtxed_NljgtAXrQMMdLvhrQ?), follow me on [Twitter](https://twitter.com/Shehan_Atuk), [LinkedIn](https://www.linkedin.com/in/shehan-a-780622126/), [Github](https://github.com/ShehanAT) and [Instagram](https://www.instagram.com/shehanthewebdev/).
+Well that's all for today, I hope you found this guide helpful. I would greatly appreciate if you could check out my [Youtube channel](https://www.youtube.com/channel/UCtxed_NljgtAXrQMMdLvhrQ?), follow me on [Twitter](https://twitter.com/Shehan_Atuk), [LinkedIn](https://www.linkedin.com/in/shehan-a-780622126/), [Github](https://github.com/ShehanAT) and [Instagram](https://www.instagram.com/shehanthewebdev/).
