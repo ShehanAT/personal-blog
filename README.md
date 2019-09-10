@@ -6,4 +6,5 @@
 * 08/26/2019: added post "Using Bounce.js for your animations"
 * 08/30/2019: added post "Book review of 97 Things Every Programmer Should Know"
 * 09/03/2019: added post "5 greatest Alfred workflows for Developers in 2019"
+* 09/06/2019: added post "Book review of The Pragmatic Programmer"
 
