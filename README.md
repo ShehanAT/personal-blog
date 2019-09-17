@@ -9,5 +9,7 @@
 * 09/06/2019: added post "Book review of The Pragmatic Programmer"
 * 09/10/2019: added post "Using Divi theme to build Wordpress sites and Wordpress best practices"
 * 09/13/2019: added post "Basic Unit Testing of Models in Ruby On Rails App Part 1"
+* 09/17/2019: added post "Basic Unit Testing of Models in Ruby On Rails App Part 2"
+
 
 
