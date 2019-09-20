@@ -1,4 +1,4 @@
-### My blog on web development tutorials
+### My blog for web development tutorials
 Visit it [here](https://shehantips.com/)
 
 
