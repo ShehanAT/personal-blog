@@ -12,9 +12,10 @@ So let's build Tetris using Python, with the help of the Pygame library! This po
 <p align="center">Figure 1: Screenshot of the Tetris game we will build</p>
 
 ### What You Will Need
-Before starting to code the Tetris game we must ensure that you have these programs installed on your local machine:
-* Python 3(preferably 3.8 or above)
-* Pygame 2(preferably 2.0.1 or above)
+Before starting to code the Tetris game we must ensure that you meet these requirements before building anything:
+* Python 3(preferably 3.8 or above) installed
+* Pygame 2(preferably 2.0.1 or above) installed 
+* Knowledge of the Tetris game rules([see here](https://www.interaction-design.org/literature/article/a-game-explained-an-example-of-a-single-game-and-how-it-meets-the-rules-of-fun#:~:text=as%20you%20can.-,Rules,blank%20space%20in%20a%20line.))
 If you want to know how to install Pygame see installation instructions below. 
 
 ### How to install Python 3 
@@ -42,8 +43,13 @@ colors = [
 ]
 
 WHITE = (255, 255, 255)
+GREY = (128, 128, 128)
+BLACK = (0, 0, 0)
+
+level = 1
+lines_to_clear = 1
 ```
-We need the ```pygame``` library and the ```pygame.locals``` library so we'll import those. The ```colors``` array contains all the colors that any of the figures in the Tetris game will contain. The colors are stored in RGB format FYI.  
+We need the ```pygame``` library and the ```pygame.locals``` library so we'll import those. The ```colors``` array contains all the colors that any of the figures in the Tetris game will contain. The colors are stored in RGB format. The ```WHITE, GREY, BLACK``` colors will be used to color various sections of the game screen such as background, grid and text color. Now, the ```level``` global variable keeps track of the current level of the game, starting from 1. And lastly, the ```lines_to_clear``` variable keeps track of how many lines to clear in order to move to the next level. Ex: if you're in level 2, you'll have to clear 2 lines in order to play level 3. 
 
 ### 2. Setup classes and main() 
 
@@ -122,27 +128,30 @@ Then, each list inside ```figures``` contains all the specific rotation coordina
 Now let's build the Tetris class:
 ```
 class Tetris:
-    level = 1
+    lines_cleared = 0
     score = 0 
     state = "start"
-    field = []
+    field = [] 
+    HEIGHT = 0
+    WIDTH = 0 
     startX = 100 
     startY = 50
     zoom = 20 
     figure = None 
 
     def __init__(self, height, width):
+        self.field = []  
+        self.figure = None 
         self.height = height 
-        self.width = width 
-        # for creating a empty field[]
+        self.width = width
         for i in range(height):
             new_line = []
             for j in range(width):
                 new_line.append(0)
-            self.field.append(new_line)      
+            self.field.append(new_line)     
 ```
 Here is the explanation for each attribute and the constructor in Tetris:
-* ```level```: pretty self-explanatory, this attribute keeps track of the current level of the game 
+* ```lines_cleared```: This variable keeps track of how many lines were cleared when a Figure fixes on to the bottom of the game screen. It is used to keep track of when to level up
 * ```score```: keeps track of the score in-game 
 * ```state```: keeps track of the state of the game, starting with ```start``` then changes to ```gameover``` if the game over conditions are met(which are if the shapes touch the top of the game screen)
 * ```field```: this is a multi-dimensional array which keeps track of each tile in the game screen. The default size is 10x20, so the total number of tiles in the game screen is 200. Each tile is given value of ```0``` to denote an empty tile and as the game progresses the tiles are given a non-zero value once a Figure lands on that tile. 
@@ -150,7 +159,7 @@ Here is the explanation for each attribute and the constructor in Tetris:
 * ```startY```: this is the starting y coordination from where each figure will fall from. Also based on window size
 * ```zoom```: this attribute helps in filling each game tile with color when a Figure is occupying it or falling through that tile. 
 * ```figure```: this is what holds the current Figure instance, so that the Figure instance can be controlled by the Tetris instance
-* ```def __init__(self, height, width)```: constructor for Tetris, assigns the passed height and width to the Tetris instance. Also fills the ```field``` multi-dimensional array with ```0``` values as a starting point for the game
+* ```def __init__(self, height, width)```: constructor for Tetris, assigns the passed height and width to the Tetris instance. Since the Tetris class will be instantiated more than once upon leveling up in-game, the ```field = []``` and ```figure = None``` lines erases the data from the previous level. Finally, the constructor fills the ```field``` multi-dimensional array with ```0``` values as a starting point for the game
 
 Now let's add the methods for the Tetris class:
 ```
@@ -192,8 +201,22 @@ Now let's add the methods for the Tetris class:
                 for i1 in range(i, 1, -1):
                     for j in range(self.width):
                         self.field[i1][j] = self.field[i1 - 1][j]        
-        self.score += lines ** 2 
+        self.score += lines ** 2
+        self.lines_cleared += lines 
+        self.check_level_up() 
     
+    def check_level_up(self):
+        global level 
+        global lines_to_clear 
+        if self.lines_cleared >= level:
+            level += 1
+            lines_to_clear = level 
+            self.lines_cleared = 0 
+            return True 
+        else:
+            lines_to_clear = level - self.lines_cleared 
+            return False 
+
     def go_space(self):
         while not self.intersects():
             self.figure.y += 1
@@ -218,10 +241,16 @@ Now let's add the methods for the Tetris class:
         if self.intersects():
             self.figure.rotation = previous_rotation 
 ```
+Explanation:
 * ```def create_figure(self)```: This method creates a new Figure instance and assigns it to the figure attribute in Tetris
+
 * ```def intersects(self)```: This method checks if the currently falling Figure is colliding with any fixed Figures at the bottom of the game screen and/or if the falling Figure is trying to go out of bounds in the x axis. It returns True if either of these conditions occurs and False if neither occurs
+
 * ```def freeze_figure(self)```: This method is used for freezing the falling Figure to the game screen if it is found to be colliding with the game screen bottom or any of the fixed figures. After freezing, it checks if any of the lines(rows in the game screen) are full by calling ```break_lines()``` and then creating a new Figure instance by calling ```create_figure()```. Finally, it checks if the newly created Figure collides with the structure of fixed figures immediately upon creation, in order to sense if the game should be over, and if it is then it sets the game state to ```gameover``` thereby ending the game
-* ```def break_lines(self)```: Main purpose of this method is to check if any of the rows in the game screen, also known as lines, are completely filled with Figures. If so then it take that row's most immediate top row and replaces it's own row with that top row, which effectively deletes completely full rows, pushes down incomplete rows and increments the score for each row that was deleted. As a bonus if multiple rows are deleted at once then twice the normal amount of points are awarded. 
+
+* ```def break_lines(self)```: Main purpose of this method is to check if any of the rows in the game screen, also known as lines, are completely filled with Figures. If so then it take that row's most immediate top row and replaces it's own row with that top row, which effectively deletes completely full rows, pushes down incomplete rows and increments the score for each row that was deleted. As a bonus if multiple rows are deleted at once then twice the normal amount of points are awarded. Finally, it adds the amount of lines cleared to ```lines_cleared``` and calls ```check_level_up()``` in order to check if the next level can be reached
+
+* ```def check_level_up(self)```: The method that checks if the next level can be achieved is this one. If the required amount of lines were cleared then it returns ```True```. If not, then it calculates the amount of lines needed to be cleared and assigns that value to the ```lines_to_clear``` global variable 
 
 * ```def go_space(self)```: If the ```down``` arrow key is held then this method makes the currently falling Figure travel at a much faster speed until the ```down``` arrow is released or when it collides with a fixed figure at which point that Figure is frozen via ```freeze_figure()```. Note: the event listeners for the ```down`` arrow key are located in the main() method
 
@@ -234,4 +263,4 @@ Now let's add the methods for the Tetris class:
 In the next post I will cover the implementation of the ```main()``` function along with other details. Stay tuned and thanks for reading my blog post!
 
 ### Closing Notes 
-Well that's all for today, I hope you found this tutorial helpful. I would greatly appreciate if you could check out my [Youtube channel](https://www.youtube.com/channel/UCtxed_NljgtAXrQMMdLvhrQ?), follow me on [Twitter](https://twitter.com/Shehan_Atuk), [LinkedIn](https://www.linkedin.com/in/shehan-a-780622126/), [Github](https://github.com/ShehanAT) and [Instagram](https://www.instagram.com/shehanthewebdev/).
+Well that's all for today, I hope you found this tutorial helpful. I would greatly appreciate if you could check out my [Youtube channel](https://www.youtube.com/channel/UCtxed_NljgtAXrQMMdLvhrQ?), [LinkedIn](https://www.linkedin.com/in/shehan-a-780622126/) and [Github](https://github.com/ShehanAT).
